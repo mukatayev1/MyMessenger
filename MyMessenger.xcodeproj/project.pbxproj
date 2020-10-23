@@ -15,6 +15,11 @@
 		2BC6A0B12542D82C0012CD07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC6A0AF2542D82C0012CD07 /* LaunchScreen.storyboard */; };
 		2BC6A0C02542DAEE0012CD07 /* ChatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0BF2542DAEE0012CD07 /* ChatsVC.swift */; };
 		2BC6A0C32542E0B20012CD07 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0C22542E0B20012CD07 /* Constants.swift */; };
+		2BC6A0C72542E4F20012CD07 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0C62542E4F20012CD07 /* LoginVC.swift */; };
+		2BC6A0CB2542E4FF0012CD07 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0CA2542E4FF0012CD07 /* RegistrationVC.swift */; };
+		2BC6A0CE2542E9520012CD07 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0CD2542E9520012CD07 /* Extensions.swift */; };
+		2BC6A0D12542FB590012CD07 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0D02542FB590012CD07 /* InputContainerView.swift */; };
+		2BC6A0D42542FFD60012CD07 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0D32542FFD60012CD07 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		2BC6A0B22542D82C0012CD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BC6A0BF2542DAEE0012CD07 /* ChatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsVC.swift; sourceTree = "<group>"; };
 		2BC6A0C22542E0B20012CD07 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2BC6A0C62542E4F20012CD07 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		2BC6A0CA2542E4FF0012CD07 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		2BC6A0CD2542E9520012CD07 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2BC6A0D02542FB590012CD07 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
+		2BC6A0D32542FFD60012CD07 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +97,8 @@
 		2BC6A0BA2542D8460012CD07 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2BC6A0D02542FB590012CD07 /* InputContainerView.swift */,
+				2BC6A0D32542FFD60012CD07 /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -101,6 +113,7 @@
 		2BC6A0BC2542D85C0012CD07 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2BC6A0C52542E4DF0012CD07 /* Authentication */,
 				2BC6A0BF2542DAEE0012CD07 /* ChatsVC.swift */,
 			);
 			path = Controller;
@@ -117,8 +130,18 @@
 			isa = PBXGroup;
 			children = (
 				2BC6A0C22542E0B20012CD07 /* Constants.swift */,
+				2BC6A0CD2542E9520012CD07 /* Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		2BC6A0C52542E4DF0012CD07 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2BC6A0C62542E4F20012CD07 /* LoginVC.swift */,
+				2BC6A0CA2542E4FF0012CD07 /* RegistrationVC.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,8 +216,13 @@
 			files = (
 				2BC6A0C32542E0B20012CD07 /* Constants.swift in Sources */,
 				2BC6A0C02542DAEE0012CD07 /* ChatsVC.swift in Sources */,
+				2BC6A0C72542E4F20012CD07 /* LoginVC.swift in Sources */,
+				2BC6A0CE2542E9520012CD07 /* Extensions.swift in Sources */,
+				2BC6A0D42542FFD60012CD07 /* CustomTextField.swift in Sources */,
+				2BC6A0D12542FB590012CD07 /* InputContainerView.swift in Sources */,
 				2BC6A0A92542D82B0012CD07 /* ViewController.swift in Sources */,
 				2BC6A0A52542D82B0012CD07 /* AppDelegate.swift in Sources */,
+				2BC6A0CB2542E4FF0012CD07 /* RegistrationVC.swift in Sources */,
 				2BC6A0A72542D82B0012CD07 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

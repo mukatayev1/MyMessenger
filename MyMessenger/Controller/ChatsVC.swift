@@ -40,7 +40,7 @@ class ChatsVC: UIViewController {
         appearance.configureWithOpaqueBackground()
         //setting a navigation bar title color to white
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = .systemIndigo
+        appearance.backgroundColor = .systemRed
         
         navBar?.standardAppearance = appearance
         navBar?.compactAppearance = appearance
