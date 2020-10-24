@@ -17,7 +17,7 @@ class InputContainerView: UIView {
         let iv = UIImageView()
         iv.image = image
         iv.tintColor = .white
-        iv.alpha = 0.87
+        iv.alpha = 0.8
         
         addSubview(iv)
         iv.centerY(inView: self)

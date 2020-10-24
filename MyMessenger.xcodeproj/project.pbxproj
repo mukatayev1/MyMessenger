@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BBD28432544215A00B3DDBD /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD28422544215A00B3DDBD /* SignupVC.swift */; };
 		2BC6A0A52542D82B0012CD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0A42542D82B0012CD07 /* AppDelegate.swift */; };
 		2BC6A0A72542D82B0012CD07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0A62542D82B0012CD07 /* SceneDelegate.swift */; };
 		2BC6A0A92542D82B0012CD07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0A82542D82B0012CD07 /* ViewController.swift */; };
@@ -20,9 +21,11 @@
 		2BC6A0CE2542E9520012CD07 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0CD2542E9520012CD07 /* Extensions.swift */; };
 		2BC6A0D12542FB590012CD07 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0D02542FB590012CD07 /* InputContainerView.swift */; };
 		2BC6A0D42542FFD60012CD07 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0D32542FFD60012CD07 /* CustomTextField.swift */; };
+		2BC6A0D725431A1C0012CD07 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0D625431A1C0012CD07 /* LoginVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BBD28422544215A00B3DDBD /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		2BC6A0A12542D82B0012CD07 /* MyMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC6A0A42542D82B0012CD07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BC6A0A62542D82B0012CD07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		2BC6A0CD2542E9520012CD07 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2BC6A0D02542FB590012CD07 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		2BC6A0D32542FFD60012CD07 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		2BC6A0D625431A1C0012CD07 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BBD28452544268500B3DDBD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2BC6A0D625431A1C0012CD07 /* LoginVM.swift */,
+				2BBD28422544215A00B3DDBD /* SignupVC.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		2BC6A0982542D82B0012CD07 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +119,7 @@
 		2BC6A0BB2542D84E0012CD07 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2BBD28452544268500B3DDBD /* Authentication */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -214,7 +228,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBD28432544215A00B3DDBD /* SignupVC.swift in Sources */,
 				2BC6A0C32542E0B20012CD07 /* Constants.swift in Sources */,
+				2BC6A0D725431A1C0012CD07 /* LoginVM.swift in Sources */,
 				2BC6A0C02542DAEE0012CD07 /* ChatsVC.swift in Sources */,
 				2BC6A0C72542E4F20012CD07 /* LoginVC.swift in Sources */,
 				2BC6A0CE2542E9520012CD07 /* Extensions.swift in Sources */,
