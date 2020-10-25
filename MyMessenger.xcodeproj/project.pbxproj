@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2B46519525443A10008D6B3C /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46519425443A10008D6B3C /* LoginVM.swift */; };
 		2B46519925443A33008D6B3C /* RegistrationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46519825443A33008D6B3C /* RegistrationVM.swift */; };
+		2BBE43A525455D5B008F149F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE43A425455D5B008F149F /* GoogleService-Info.plist */; };
 		2BC6A0A52542D82B0012CD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0A42542D82B0012CD07 /* AppDelegate.swift */; };
 		2BC6A0A72542D82B0012CD07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0A62542D82B0012CD07 /* SceneDelegate.swift */; };
 		2BC6A0A92542D82B0012CD07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0A82542D82B0012CD07 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 		0ECA8DFDE6C1F030A98811AB /* Pods-MyMessenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMessenger.debug.xcconfig"; path = "Target Support Files/Pods-MyMessenger/Pods-MyMessenger.debug.xcconfig"; sourceTree = "<group>"; };
 		2B46519425443A10008D6B3C /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		2B46519825443A33008D6B3C /* RegistrationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVM.swift; sourceTree = "<group>"; };
+		2BBE43A425455D5B008F149F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BC6A0A12542D82B0012CD07 /* MyMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC6A0A42542D82B0012CD07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BC6A0A62542D82B0012CD07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				2BC6A0AD2542D82C0012CD07 /* Assets.xcassets */,
 				2BC6A0AF2542D82C0012CD07 /* LaunchScreen.storyboard */,
 				2BC6A0B22542D82C0012CD07 /* Info.plist */,
+				2BBE43A425455D5B008F149F /* GoogleService-Info.plist */,
 			);
 			path = MyMessenger;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				2BC6A09D2542D82B0012CD07 /* Sources */,
 				2BC6A09E2542D82B0012CD07 /* Frameworks */,
 				2BC6A09F2542D82B0012CD07 /* Resources */,
+				4EBDFC1935C8E44747E51E5A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -241,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC6A0B12542D82C0012CD07 /* LaunchScreen.storyboard in Resources */,
+				2BBE43A525455D5B008F149F /* GoogleService-Info.plist in Resources */,
 				2BC6A0AE2542D82C0012CD07 /* Assets.xcassets in Resources */,
 				2BC6A0AC2542D82B0012CD07 /* Main.storyboard in Resources */,
 			);
@@ -249,6 +254,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4EBDFC1935C8E44747E51E5A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMessenger/Pods-MyMessenger-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyMessenger/Pods-MyMessenger-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyMessenger/Pods-MyMessenger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		77D8DF0174D04550868054D3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
