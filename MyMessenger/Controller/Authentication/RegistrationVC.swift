@@ -17,7 +17,7 @@ class RegistrationVC: UIViewController {
     
     let addImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(K.addImage, for: .normal)
+        button.setImage(K.plusCircleImage, for: .normal)
         button.setTitle("Add Photo", for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
@@ -191,8 +191,6 @@ class RegistrationVC: UIViewController {
         guard let profileImage = profileImage else {return}
         
         let credentials = RegistrationCredentials(email: email, fullname: fullname, username: username, password: password, profileImage: profileImage)
-        
-
         
         showLoader(true, withText: "Signing up")
         

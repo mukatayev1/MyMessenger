@@ -13,6 +13,16 @@ class ChatsVC: UIViewController {
     //MARK: - Properties
     
     private let tableView = UITableView()
+    
+    private let newMessageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(K.plusImage, for: .normal)
+        button.backgroundColor = .systemRed
+        button.tintColor = .white
+        button.imageView?.setDimensions(height: 24, width: 24)
+        button.addTarget(self, action: #selector(handleNewMessageButton), for: .touchUpInside)
+        return button
+    }()
 
     //MARK: - Lifecycle
     
@@ -20,8 +30,6 @@ class ChatsVC: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-        setupNavigationBar()
-        setupTableView()
         authenticateUser()
     }
     
@@ -62,33 +70,15 @@ class ChatsVC: UIViewController {
     func setupUI() {
         view.backgroundColor = .white
         
-        let profileImage = UIImage(systemName: "person.crop.circle.fill", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+        setupNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
+        setupTableView()
+        
+        let profileImage = K.profileImage
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(showProfile))
+        
+        //subviews
+        subviewNewMessageButton()
     }
-    
-    func setupNavigationBar() {
-        //creating properties for simplicity
-        let appearance = UINavigationBarAppearance()
-        let navBar = navigationController?.navigationBar
-        
-        appearance.configureWithOpaqueBackground()
-        //setting a navigation bar title color to white
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = .systemRed
-        
-        navBar?.standardAppearance = appearance
-        navBar?.compactAppearance = appearance
-        navBar?.scrollEdgeAppearance = appearance
-        
-        navBar?.prefersLargeTitles = true
-        navigationItem.title = "Messages"
-        navBar?.tintColor = .white
-        navBar?.isTranslucent = true
-        
-        navBar?.overrideUserInterfaceStyle = .dark
-    }
-    
-    
     
     func setupTableView() {
         tableView.backgroundColor = .white
@@ -104,10 +94,28 @@ class ChatsVC: UIViewController {
         view.addSubview(tableView)
     }
     
+    //MARK: - Subviewing
+    
+    func subviewNewMessageButton() {
+        view.addSubview(newMessageButton)
+        newMessageButton.setDimensions(height: 56, width: 56)
+        newMessageButton.layer.cornerRadius = 56 / 2
+
+//        newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
+        newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
+    }
+    
     //MARK: - Selectors
     
     @objc func showProfile() {
         logout()
+    }
+    
+    @objc func handleNewMessageButton() {
+        let controller = NewMessageVC()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
 

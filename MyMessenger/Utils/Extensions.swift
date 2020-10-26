@@ -105,22 +105,26 @@ extension UIViewController {
         
     }
     
-    func configureNavigationBar(withTitle title: String, prefersLargeTitles: Bool) {
+    func setupNavigationBar(withTitle title: String, prefersLargeTitles: Bool) {
+        //creating properties for simplicity
         let appearance = UINavigationBarAppearance()
+        let navBar = navigationController?.navigationBar
+        
         appearance.configureWithOpaqueBackground()
+        //setting a navigation bar title color to white
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = .systemPurple
+        appearance.backgroundColor = .systemRed
         
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navBar?.standardAppearance = appearance
+        navBar?.compactAppearance = appearance
+        navBar?.scrollEdgeAppearance = appearance
         
-        navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitles
+        navBar?.prefersLargeTitles = prefersLargeTitles
         navigationItem.title = title
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
+        navBar?.tintColor = .white
+        navBar?.isTranslucent = true
         
-        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+        navBar?.overrideUserInterfaceStyle = .dark
     }
     
     func showError(_ errorMessage: String) {
