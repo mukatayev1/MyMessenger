@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationVC: UIViewController {
 
     //MARK: - Properties
     
     var viewModel = RegistrationVM()
+    var profileImage: UIImage?
 
     let addImageButton: UIButton = {
         let button = UIButton(type: .system)
@@ -48,7 +50,7 @@ class RegistrationVC: UIViewController {
         let tf = CustomTextField(placeholder: "Email")
         tf.keyboardType = .emailAddress
         tf.returnKeyType = .next
-        tf.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
         return tf
     }()
     
@@ -56,14 +58,14 @@ class RegistrationVC: UIViewController {
         let tf = CustomTextField(placeholder: "Full Name")
         tf.returnKeyType = .next
         tf.autocapitalizationType = .words
-        tf.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
         return tf
     }()
     
     private let usernameTextField: CustomTextField = {
         let tf = CustomTextField(placeholder: "Username")
         tf.returnKeyType = .next
-        tf.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
         return tf
     }()
     
@@ -72,7 +74,7 @@ class RegistrationVC: UIViewController {
         tf.isSecureTextEntry = true
         tf.clearsOnBeginEditing = true
         tf.returnKeyType = .go
-        tf.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
         return tf
     }()
     
@@ -85,6 +87,7 @@ class RegistrationVC: UIViewController {
         button.backgroundColor = K.disabledButtonColor
         button.isEnabled = false
         button.setHeight(height: 50)
+        button.addTarget(self, action: #selector(handleSignupButton), for: .touchUpInside)
         return button
     }()
     
@@ -106,8 +109,8 @@ class RegistrationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
+        configureNotificationObservers()
     }
     
     //MARK: - Helpers
@@ -132,10 +135,13 @@ class RegistrationVC: UIViewController {
         subviewAHAButtonButton()
     }
     
-    //func to move up
-//    func configureNotificationObservers() {
-//        
-//    }
+    //func to move up the keyboard
+    func configureNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
     
     //MARK: - Subviewing
     
@@ -170,6 +176,25 @@ class RegistrationVC: UIViewController {
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+    @objc func handleSignupButton() {
+        guard let email = emailTextField.text else {return}
+        guard let fullname = fullNameTextField.text else {return}
+        guard let username = usernameTextField.text?.lowercased() else {return}
+        guard let password = passwordTextField.text else {return}
+        guard let profileImage = profileImage else {return}
+        
+        let credentials = RegistrationCredentials(email: email, fullname: fullname, username: username, password: password, profileImage: profileImage)
+    
+        AuthManager.shared.createUser(credentials: credentials) { (error) in
+                if let error = error {
+                    print("DEBUG: error: \(error)")
+                    return
+                }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 
     @objc func handleAHAButton() {
         navigationController?.popToRootViewController(animated: true)
@@ -185,7 +210,6 @@ class RegistrationVC: UIViewController {
         } else if sender == usernameTextField {
             viewModel.username = usernameTextField.text
         }
-        
         checkFormStatus()
     }
 }
@@ -195,6 +219,8 @@ class RegistrationVC: UIViewController {
 extension RegistrationVC: UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
+        //setting the image to profileImage
+        profileImage = image
         addImageButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         addImageButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
         addImageButton.layer.borderWidth = 3.0

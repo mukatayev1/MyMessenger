@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatsVC: UIViewController {
     
@@ -21,9 +22,42 @@ class ChatsVC: UIViewController {
         setupUI()
         setupNavigationBar()
         setupTableView()
+        authenticateUser()
+    }
+    
+    //MARK: - API
+    
+    func authenticateUser() {
+        if Auth.auth().currentUser?.uid == nil {
+//            print("DEBUG: User isn't logged in. Present the login screen")
+            presentLoginScreen()
+        } else {
+//            print("DEBUG: User is logged in. Setup screen")
+//            print("User ID: \(Auth.auth().currentUser?.uid)")
+        }
     }
     
     //MARK: - Helpers
+    
+    func presentLoginScreen() {
+        DispatchQueue.main.async {
+            let controller = LoginVC()
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        }
+    }
+    
+    func logout() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            presentLoginScreen()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+    }
     
     func setupUI() {
         view.backgroundColor = .white
@@ -54,8 +88,10 @@ class ChatsVC: UIViewController {
         navBar?.overrideUserInterfaceStyle = .dark
     }
     
+    
+    
     func setupTableView() {
-        tableView.backgroundColor = .cyan
+        tableView.backgroundColor = .white
         tableView.rowHeight = 80
         tableView.frame = view.frame
         tableView.tableFooterView = UIView()
@@ -71,7 +107,7 @@ class ChatsVC: UIViewController {
     //MARK: - Selectors
     
     @objc func showProfile() {
-        print("Show Profile")
+        logout()
     }
 }
 
