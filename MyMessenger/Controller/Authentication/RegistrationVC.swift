@@ -9,12 +9,12 @@ import UIKit
 import Firebase
 
 class RegistrationVC: UIViewController {
-
+    
     //MARK: - Properties
     
     var viewModel = RegistrationVM()
     var profileImage: UIImage?
-
+    
     let addImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(K.addImage, for: .normal)
@@ -137,10 +137,16 @@ class RegistrationVC: UIViewController {
     
     //func to move up the keyboard
     func configureNotificationObservers() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
     }
     
     //MARK: - Subviewing
@@ -185,17 +191,22 @@ class RegistrationVC: UIViewController {
         guard let profileImage = profileImage else {return}
         
         let credentials = RegistrationCredentials(email: email, fullname: fullname, username: username, password: password, profileImage: profileImage)
-    
-        AuthManager.shared.createUser(credentials: credentials) { (error) in
-                if let error = error {
-                    print("DEBUG: error: \(error)")
-                    return
-                }
-            
+        
+
+        
+        showLoader(true, withText: "Signing up")
+        
+        AuthService.shared.createUser(credentials: credentials) { (error) in
+            if let error = error {
+                print("DEBUG: error: \(error)")
+                self.showLoader(false)
+                return
+            }
+            self.showLoader(false)
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+    
     @objc func handleAHAButton() {
         navigationController?.popToRootViewController(animated: true)
     }
@@ -211,6 +222,19 @@ class RegistrationVC: UIViewController {
             viewModel.username = usernameTextField.text
         }
         checkFormStatus()
+    }
+    
+    //Notification center functions "Keyboard will show" & "Keyboard will hide"
+    @objc func keyboardWillShow() {
+        if view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= 88
+        }
+    }
+    
+    @objc func keyboardWillHide() {
+        if view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
 }
 

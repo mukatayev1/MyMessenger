@@ -16,8 +16,8 @@ struct RegistrationCredentials {
     let profileImage: UIImage
 }
 
-struct AuthManager {
-    static let shared = AuthManager()
+struct AuthService {
+    static let shared = AuthService()
     
     func logUserIn(withEmail email: String, password: String, completion: AuthDataResultCallback?) {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
@@ -26,31 +26,30 @@ struct AuthManager {
     
     func createUser(credentials: RegistrationCredentials, completion: ((Error?) -> Void)? ) {
         guard let imageData = credentials.profileImage.jpegData(compressionQuality: 0.5) else {return}
-        
         let filename = NSUUID().uuidString
         let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
         
         ref.putData(imageData, metadata: nil) { (meta, error) in
             if let error = error {
-                print("DEBUG: Failed to upload image with error \(error.localizedDescription)")
+                completion!(error)
                 return
             }
             
             ref.downloadURL { (url, error) in
                 //creating profile image URL
                 guard let profileImageURL = url?.absoluteString else {return} // this is our profile image url
-                Auth.auth().createUser(withEmail: credentials.email, password: credentials.password) { (authResult, error) in
+                Auth.auth().createUser(withEmail: credentials.email, password: credentials.password) { (result, error) in
                     if let error = error {
-                        print("DEBUG: Failed to create a new user with error \(error.localizedDescription)")
+                        completion!(error)
                         return
                     }
                     
-                    guard let uID = authResult?.user.uid else {return}
+                    guard let uID = result?.user.uid else {return}
                     
                     let data = ["email": credentials.email,
                                 "fullname": credentials.fullname,
                                 "profileImageURL": profileImageURL,
-                                "username": credentials.username,
+                                "uID": uID,
                                 "password": credentials.password] as [String: Any]
                     
                     Firestore.firestore().collection("users").document(uID).setData(data, completion: completion)
@@ -58,5 +57,6 @@ struct AuthManager {
                 
             }
         }
+        
     }
 }
