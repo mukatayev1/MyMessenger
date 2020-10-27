@@ -7,6 +7,7 @@
 
 import UIKit
 
+//Custom reusable container view for textfields in order to reuse it in various pages without creating a messy code with too much unnecessary lines
 class InputContainerView: UIView {
     
     init(image: UIImage, textField: UITextField) {

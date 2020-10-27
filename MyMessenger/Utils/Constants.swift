@@ -7,8 +7,9 @@
 
 import UIKit
 
+//Custom struct to store all constants used throughout the app. "K" name is just a random name created to make a typing of this struct very fast.
 struct K {
-    static let cellIdentifier = "cell"
+    static let chatsReuseIdentifier = "chatsCell"
     
     static let iconImage = UIImage(systemName: "paperplane", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
     
@@ -25,4 +26,6 @@ struct K {
     static let plusImage = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
     
     static let profileImage = UIImage(systemName: "person.crop.circle.fill", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+    
+    static let userReuseIdentifier = "UserCell"
 }

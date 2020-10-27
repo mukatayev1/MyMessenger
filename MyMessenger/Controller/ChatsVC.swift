@@ -90,7 +90,7 @@ class ChatsVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.cellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.chatsReuseIdentifier)
         view.addSubview(tableView)
     }
     
@@ -133,7 +133,7 @@ extension ChatsVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.chatsReuseIdentifier, for: indexPath)
         cell.textLabel?.text = "Im here"
         return cell
     }

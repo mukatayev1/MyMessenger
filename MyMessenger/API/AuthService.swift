@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 
+//A better way to bundle each credential of the user.
 struct RegistrationCredentials {
     let email: String
     let fullname: String
@@ -16,6 +17,7 @@ struct RegistrationCredentials {
     let profileImage: UIImage
 }
 
+//Authentication service. It has a login and signup functionalities.
 struct AuthService {
     static let shared = AuthService()
     
@@ -50,6 +52,7 @@ struct AuthService {
                                 "fullname": credentials.fullname,
                                 "profileImageURL": profileImageURL,
                                 "uID": uID,
+                                "username": credentials.username, 
                                 "password": credentials.password] as [String: Any]
                     
                     Firestore.firestore().collection("users").document(uID).setData(data, completion: completion)

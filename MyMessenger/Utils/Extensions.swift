@@ -8,7 +8,10 @@
 import UIKit
 import JGProgressHUD
 
+//Extention of the UIView in order to reuse the functions in the project.
 extension UIView {
+    
+    //Custom constraints functions. Purpose: to make a autolayouting process faster. Example: no need to type translatesAutoresizing..., syntax is more intuitive.
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
@@ -80,9 +83,11 @@ extension UIView {
     }
 }
 
+//Extension of VC in order to reuse the functions throughout different VC-s.
 extension UIViewController {
     static let progressHud = JGProgressHUD(style: .dark)
 
+    //a func to setup a gradient background
     func setupGradientLayer() {
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.systemRed.cgColor, UIColor.white.cgColor]
@@ -91,6 +96,7 @@ extension UIViewController {
         gradient.frame = view.frame
     }
     
+    //a func ot setup a "loader" whenever the screen is loading.
     func showLoader(_ show: Bool, withText text: String? = "Loading") {
         view.endEditing(true)
 //        let progressHud = JGProgressHUD()
@@ -105,6 +111,8 @@ extension UIViewController {
         
     }
     
+    
+    // a func to setup navigation bar in various VC-s 
     func setupNavigationBar(withTitle title: String, prefersLargeTitles: Bool) {
         //creating properties for simplicity
         let appearance = UINavigationBarAppearance()

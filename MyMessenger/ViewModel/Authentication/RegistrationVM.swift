@@ -8,7 +8,7 @@
 import Foundation
 
 
-
+//This ViewModel works for SignUp page. Role: helps in making Sign Up button tappable or not.
 struct RegistrationVM: AuthenticationProtocol {
     
     var email: String?

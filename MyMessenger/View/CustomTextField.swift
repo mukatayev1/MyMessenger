@@ -7,6 +7,7 @@
 
 import UIKit
 
+//Custom reusable textfield  in order to reuse it in various pages without creating a messy code with too much unnecessary lines. All textfields in the app will have a common properties created in custom text field
 class CustomTextField: UITextField {
     
     init(placeholder: String) {
