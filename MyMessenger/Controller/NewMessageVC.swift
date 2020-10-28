@@ -11,6 +11,9 @@ class NewMessageVC: UITableViewController {
     
     //MARK: - Properties
     
+    //a property that sotres an array of users
+    private var users = [User]()
+    
 //    private let searchTextField: CustomTextField = {
 //        let tf = CustomTextField(placeholder: "Search for a user")
 //        return tf
@@ -27,7 +30,12 @@ class NewMessageVC: UITableViewController {
     //MARK: - API
     
     func fetchUsers() {
-        Service.fetchUser()
+        Service.fetchUsers { users in
+            self.users = users
+            self.tableView.reloadData()
+            print("DEBUG: New message users are \(users)")
+            
+        }
     }
     
     //MARK: - Helpers
@@ -64,11 +72,17 @@ class NewMessageVC: UITableViewController {
 extension NewMessageVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        print("DEBUG: User count is \(users.count)")
+        return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.userReuseIdentifier, for: indexPath) as! UserCell
+        
+        cell.user = users[indexPath.row]
+        print("DEBUG: Index row is \(indexPath.row)")
+        print("DEBUG: User in array is \(users[indexPath.row].username)")
+        
         return cell
     }
     

@@ -6,11 +6,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 //A custom cell created in order to populate each cell in NewMessageVC() with profileImage, fullname and username.
 class UserCell: UITableViewCell {
     
     //MARK: - Properties
+    
+    //this property acts as a var that will be used to populate our tableview cells with different users.
+    var user: User? {
+        didSet { configure() }
+    }
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -64,6 +70,22 @@ class UserCell: UITableViewCell {
         
         addSubview(stack)
         stack.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 12)
+    }
+    
+    //MARK: - Helpers
+    
+    func configure() {
+        //use guard let to safely unwrap the user
+        guard let user = user else { return }
+        
+        //assigning the fullname and username of user to the labels inside of the cell.
+        fullnameLabel.text = user.fullname
+        usernameLabel.text = user.username
+        
+        //populating the cells with images
+        guard let url = URL(string: user.profileImageURL) else { return }
+        //the sd_setImage func fetches the url image to our project
+        profileImageView.sd_setImage(with: url)
     }
     
  

@@ -85,6 +85,8 @@ class LoginVC: UIViewController {
     
     //MARK: - Helpers
     
+    
+    //a func to check if button needs to be enabled or not 
     func checkFormStatus() {
         if viewModel.formIsValid {
             loginButton.isEnabled = true

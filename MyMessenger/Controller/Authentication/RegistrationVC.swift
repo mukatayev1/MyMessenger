@@ -189,7 +189,7 @@ class RegistrationVC: UIViewController {
         guard let username = usernameTextField.text?.lowercased() else {return}
         guard let password = passwordTextField.text else {return}
         guard let profileImage = profileImage else {return}
-        
+        //passing saved properties to the reg. credentials
         let credentials = RegistrationCredentials(email: email, fullname: fullname, username: username, password: password, profileImage: profileImage)
         
         showLoader(true, withText: "Signing up")
@@ -241,6 +241,7 @@ class RegistrationVC: UIViewController {
 extension RegistrationVC: UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
+        
         //setting the image to profileImage
         profileImage = image
         addImageButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
