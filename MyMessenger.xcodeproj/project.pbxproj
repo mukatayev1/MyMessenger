@@ -14,6 +14,8 @@
 		2B46519925443A33008D6B3C /* RegistrationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46519825443A33008D6B3C /* RegistrationVM.swift */; };
 		2B59746B254978CA009E39B2 /* ChatsCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */; };
 		2B59746F2549917A009E39B2 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B59746E2549917A009E39B2 /* CustomInputAccessoryView.swift */; };
+		2B597485254A9086009E39B2 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B597484254A9086009E39B2 /* MessageCell.swift */; };
+		2B597489254A9817009E39B2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B597488254A9817009E39B2 /* Message.swift */; };
 		2B6B44262548179600663B95 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B44252548179600663B95 /* User.swift */; };
 		2B6B4429254817F500663B95 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B4428254817F500663B95 /* Service.swift */; };
 		2BBE43A525455D5B008F149F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE43A425455D5B008F149F /* GoogleService-Info.plist */; };
@@ -42,6 +44,8 @@
 		2B46519825443A33008D6B3C /* RegistrationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVM.swift; sourceTree = "<group>"; };
 		2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCollectionVC.swift; sourceTree = "<group>"; };
 		2B59746E2549917A009E39B2 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
+		2B597484254A9086009E39B2 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		2B597488254A9817009E39B2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2B6B44252548179600663B95 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2B6B4428254817F500663B95 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2BBE43A425455D5B008F149F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				2B6B44252548179600663B95 /* User.swift */,
+				2B597488254A9817009E39B2 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				2BC6A0D32542FFD60012CD07 /* CustomTextField.swift */,
 				2B0D62682546F0C2006A3FAA /* UserCell.swift */,
 				2B59746E2549917A009E39B2 /* CustomInputAccessoryView.swift */,
+				2B597484254A9086009E39B2 /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,8 +162,8 @@
 			children = (
 				2BC6A0C52542E4DF0012CD07 /* Authentication */,
 				2BC6A0BF2542DAEE0012CD07 /* ConversationsVC.swift */,
-				2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */,
 				2B0D62652546EAB2006A3FAA /* NewMessageVC.swift */,
+				2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -322,10 +328,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B0D62692546F0C2006A3FAA /* UserCell.swift in Sources */,
+				2B597485254A9086009E39B2 /* MessageCell.swift in Sources */,
 				2B46519525443A10008D6B3C /* LoginVM.swift in Sources */,
 				2BC6A0C32542E0B20012CD07 /* Constants.swift in Sources */,
 				2BC6A0C02542DAEE0012CD07 /* ConversationsVC.swift in Sources */,
 				2B6B44262548179600663B95 /* User.swift in Sources */,
+				2B597489254A9817009E39B2 /* Message.swift in Sources */,
 				2B23A2F02545989800CCDC2B /* AuthService.swift in Sources */,
 				2BC6A0C72542E4F20012CD07 /* LoginVC.swift in Sources */,
 				2BC6A0CE2542E9520012CD07 /* Extensions.swift in Sources */,

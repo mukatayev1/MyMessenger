@@ -30,4 +30,5 @@ struct K {
     static let circleArrowUpImage = UIImage(systemName: "arrow.up.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
     
     static let userReuseIdentifier = "UserCell"
+    static let messageReuseIdentifier = "MessageCell"
 }

@@ -81,12 +81,14 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        self.hideKeyboardWhenTappedAround()
+        setupDelegates()
     }
     
     //MARK: - Helpers
     
     
-    //a func to check if button needs to be enabled or not 
+    //a func to check if button needs to be enabled or not
     func checkFormStatus() {
         if viewModel.formIsValid {
             loginButton.isEnabled = true
@@ -110,6 +112,11 @@ class LoginVC: UIViewController {
         subviewIconImage()
         subviewStackView()
         subviewDHAButton()
+    }
+    
+    func setupDelegates() {
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
     
@@ -170,5 +177,16 @@ class LoginVC: UIViewController {
         checkFormStatus()
     }
     
-    
+}
+
+extension LoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            handleLoginButton()
+            passwordTextField.resignFirstResponder()
+        }
+        return true
+    }
 }

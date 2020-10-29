@@ -20,7 +20,7 @@ class UserCell: UITableViewCell {
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.systemOrange
+        iv.backgroundColor = UIColor.lightGray
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
@@ -29,7 +29,7 @@ class UserCell: UITableViewCell {
     private let usernameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.text = "Drake"
+//        label.text = "Username"
         label.textColor = .black
         return label
     }()
@@ -38,7 +38,7 @@ class UserCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.text = "Aubrey Graham"
+//        label.text = "Full name"
         return label
     }()
     

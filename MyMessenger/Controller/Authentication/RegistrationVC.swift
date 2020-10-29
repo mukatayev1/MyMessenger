@@ -111,6 +111,8 @@ class RegistrationVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         configureNotificationObservers()
+        self.hideKeyboardWhenTappedAround()
+        setupDelegates()
     }
     
     //MARK: - Helpers
@@ -146,7 +148,13 @@ class RegistrationVC: UIViewController {
         fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-        
+    }
+    
+    func setupDelegates() {
+        self.emailTextField.delegate = self
+        self.fullNameTextField.delegate = self
+        self.usernameTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
     //MARK: - Subviewing
@@ -201,7 +209,7 @@ class RegistrationVC: UIViewController {
                 return
             }
             self.showLoader(false)
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
@@ -252,4 +260,21 @@ extension RegistrationVC: UIImagePickerControllerDelegate,  UINavigationControll
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension RegistrationVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == emailTextField {
+            fullNameTextField.becomeFirstResponder()
+        } else if textField == fullNameTextField {
+            usernameTextField.becomeFirstResponder()
+        } else if textField == usernameTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            handleSignupButton()
+            passwordTextField.resignFirstResponder()
+        }
+        return true
+    }
 }
