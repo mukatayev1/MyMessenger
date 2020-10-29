@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class ChatsVC: UIViewController {
+class ConversationsVC: UIViewController {
     
     //MARK: - Properties
     
@@ -113,6 +113,7 @@ class ChatsVC: UIViewController {
     
     @objc func handleNewMessageButton() {
         let controller = NewMessageVC()
+        controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
@@ -121,13 +122,13 @@ class ChatsVC: UIViewController {
 
 //MARK: - Extensions
 
-extension ChatsVC: UITableViewDelegate {
+extension ConversationsVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
     }
 }
 
-extension ChatsVC: UITableViewDataSource {
+extension ConversationsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
@@ -137,6 +138,16 @@ extension ChatsVC: UITableViewDataSource {
         cell.textLabel?.text = "Im here"
         return cell
     }
-    
-    
+}
+
+//MARK: - NewMessageVC Delegate
+
+extension ConversationsVC: NewMessageVCDelegate {
+    func controller(_ controller: NewMessageVC, wantsToStartChatWith user: User) {
+        //place the function of NewMessage delegate gets performed.
+        controller.dismiss(animated: true, completion: nil)
+        let chat = ChatsCollectionVC(user: user)
+        
+        navigationController?.pushViewController(chat, animated: true)
+    }
 }

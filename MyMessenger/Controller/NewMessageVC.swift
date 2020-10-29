@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol NewMessageVCDelegate: class {
+    func controller(_ controller: NewMessageVC, wantsToStartChatWith user: User)
+}
+
 class NewMessageVC: UITableViewController {
     
     //MARK: - Properties
     
     //a property that sotres an array of users
     private var users = [User]()
+    weak var delegate: NewMessageVCDelegate?
     
 //    private let searchTextField: CustomTextField = {
 //        let tf = CustomTextField(placeholder: "Search for a user")
@@ -72,6 +77,7 @@ class NewMessageVC: UITableViewController {
 extension NewMessageVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         print("DEBUG: User count is \(users.count)")
         return users.count
     }
@@ -80,10 +86,18 @@ extension NewMessageVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.userReuseIdentifier, for: indexPath) as! UserCell
         
         cell.user = users[indexPath.row]
+        
         print("DEBUG: Index row is \(indexPath.row)")
         print("DEBUG: User in array is \(users[indexPath.row].username)")
         
         return cell
     }
-    
+}
+
+extension NewMessageVC {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //place where we call the function of the delegate protocol
+        delegate?.controller(self, wantsToStartChatWith: users[indexPath.row])
+    }
 }

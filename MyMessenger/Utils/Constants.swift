@@ -27,5 +27,7 @@ struct K {
     
     static let profileImage = UIImage(systemName: "person.crop.circle.fill", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
     
+    static let circleArrowUpImage = UIImage(systemName: "arrow.up.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
+    
     static let userReuseIdentifier = "UserCell"
 }
