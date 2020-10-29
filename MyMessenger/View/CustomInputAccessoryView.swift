@@ -17,7 +17,7 @@ class CustomInputAccessoryView: UIView {
     
     weak var delegate: CustomInputAccessoryViewDelegate?
     
-    private let messageInputView: UITextView = {
+    let messageInputView: UITextView = {
         let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 16)
         tv.layer.cornerRadius = 18

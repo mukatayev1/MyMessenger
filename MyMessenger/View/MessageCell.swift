@@ -11,6 +11,13 @@ class MessageCell: UICollectionViewCell {
     
     //MARK: - Properties
     
+    var message: Message? {
+        didSet { configure() }
+    }
+    
+    var bubbleLeftAnchor: NSLayoutConstraint!
+    var bubbleRightAnchor: NSLayoutConstraint!
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -25,8 +32,6 @@ class MessageCell: UICollectionViewCell {
         tv.font = UIFont.systemFont(ofSize: 16)
         tv.isScrollEnabled = false
         tv.isEditable = false
-        tv.textColor = .white
-        tv.text = "This is the message"
         return tv
     }()
     
@@ -40,7 +45,7 @@ class MessageCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .blue
+        
         
         //subviewing
         subviewElements()
@@ -59,14 +64,37 @@ class MessageCell: UICollectionViewCell {
         profileImageView.setDimensions(height: 32, width: 32)
         profileImageView.layer.cornerRadius = 32 / 2
         
-        //profileImageView
+        //Bubble container
         addSubview(bubbleContainer)
         bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         bubbleContainer.layer.cornerRadius = 12
-        bubbleContainer.anchor(top: topAnchor, left: profileImageView.rightAnchor, paddingLeft: 12)
+        bubbleContainer.anchor(top: topAnchor)
+        bubbleContainer.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        
+        //Left and Right anchors of the bubble
+        bubbleLeftAnchor = bubbleContainer.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12)
+        bubbleLeftAnchor.isActive = false
+        
+        bubbleRightAnchor = bubbleContainer.rightAnchor.constraint(equalTo: rightAnchor, constant: -12)
+        bubbleRightAnchor.isActive = false
         
         //textView
         addSubview(textView)
-        textView.anchor(top: bubbleContainer.topAnchor, left: bubbleContainer.leftAnchor, bottom: bubbleContainer.bottomAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 4, paddingRight: 12)
+        textView.anchor(top: bubbleContainer.topAnchor, left: bubbleContainer.leftAnchor, bottom: bubbleContainer.bottomAnchor, right: bubbleContainer.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 4, paddingRight: 12)
+    }
+    
+    //configure the message
+    func configure() {
+        guard let message = message else { return }
+        let viewModel = MessageVM(message: message)
+        
+        bubbleContainer.backgroundColor = viewModel.messageBackgroundColor
+        textView.textColor = viewModel.messageTextColor
+        textView.text = message.text
+        
+        bubbleLeftAnchor.isActive = viewModel.leftAnchorActive
+        bubbleRightAnchor.isActive = viewModel.rightAnchorActive
+        
+        profileImageView.isHidden = viewModel.shouldHideProfileImage
     }
 }

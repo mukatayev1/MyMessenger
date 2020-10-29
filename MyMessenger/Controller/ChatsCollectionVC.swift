@@ -20,6 +20,7 @@ class ChatsCollectionVC: UICollectionViewController {
     }()
     
     private var messages = [Message]()
+    var fromCurrentUser = false
     
     //MARK: - Lifecycle
     
@@ -42,7 +43,7 @@ class ChatsCollectionVC: UICollectionViewController {
     
     //It helps us to setup input accessory view of VC.
     override var inputAccessoryView: UIView? {
-        get {return customInputView}
+        get { return customInputView }
     }
     
     override var canBecomeFirstResponder: Bool {
@@ -61,18 +62,23 @@ class ChatsCollectionVC: UICollectionViewController {
 
 }
 
+//an extension for working with collection view
 extension ChatsCollectionVC {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.messageReuseIdentifier, for: indexPath) as! MessageCell
+        
+        cell.message = messages[indexPath.row]
         
         return cell
     }
 }
 
+//A delegate for setting the Collection view cell setup
 extension ChatsCollectionVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -81,13 +87,29 @@ extension ChatsCollectionVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 50)
-    }
+    } 
 }
 
+
+//a delegate for sending message from custom input accessory view.
 extension ChatsCollectionVC: CustomInputAccessoryViewDelegate {
+    
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
-        print("DEBUG: Handle a sending message in ChatCVC")
+        
+        fromCurrentUser.toggle()
+        inputView.messageInputView.text = nil
+        let message = Message(text: message, isFromCurrentUser: fromCurrentUser)
+        messages.append(message)
+        
+        //in order to scroll the view when message is sent
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        }
     }
+    
     
     
 }
