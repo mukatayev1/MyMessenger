@@ -38,7 +38,8 @@ class ChatsCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         setupUI()
         print("User in chatVC\(user.username)")
-        self.hideKeyboardWhenTappedAround()
+        
+        
     }
     
     //It helps us to setup input accessory view of VC.
@@ -59,6 +60,15 @@ class ChatsCollectionVC: UICollectionViewController {
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: K.messageReuseIdentifier)
         collectionView.alwaysBounceVertical = true
     }
+    
+    //MARK: - API
+    
+    func fetchMessages() {
+        Service.fetchMessages(forUser: user) { (messages) in
+            self.messages = messages
+            self.collectionView.reloadData()
+        }
+    }
 
 }
 
@@ -76,7 +86,11 @@ extension ChatsCollectionVC {
         
         return cell
     }
+    
+    //MARK: - Selectors
 }
+
+//MARK: - Extensions
 
 //A delegate for setting the Collection view cell setup
 extension ChatsCollectionVC: UICollectionViewDelegateFlowLayout {
@@ -96,11 +110,15 @@ extension ChatsCollectionVC: CustomInputAccessoryViewDelegate {
     
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
         
-        fromCurrentUser.toggle()
-        inputView.messageInputView.text = nil
-        let message = Message(text: message, isFromCurrentUser: fromCurrentUser)
-        messages.append(message)
+        //a func to uploaad messages to database.
+        Service.uploadMessage(message, to: user) { (error) in
+            if let error = error {
+                print("DEBUG: Failed to upload the message. Error: \(error)")
+                return
+            }
+        }
         
+        inputView.clearMessageText()
         //in order to scroll the view when message is sent
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -109,7 +127,5 @@ extension ChatsCollectionVC: CustomInputAccessoryViewDelegate {
             self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
         }
     }
-    
-    
     
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 //Custom struct to store all constants used throughout the app. "K" name is just a random name created to make a typing of this struct very fast.
 struct K {
@@ -32,4 +33,6 @@ struct K {
     static let userReuseIdentifier = "UserCell"
     
     static let messageReuseIdentifier = "MessageCell"
+    
+    static let COLLECTION_MESSAGES = Firestore.firestore().collection("messages")
 }

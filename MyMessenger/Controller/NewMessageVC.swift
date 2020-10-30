@@ -38,7 +38,7 @@ class NewMessageVC: UITableViewController {
         Service.fetchUsers { users in
             self.users = users
             self.tableView.reloadData()
-            print("DEBUG: New message users are \(users)")
+//            print("DEBUG: New message users are \(users)")
             
         }
     }
@@ -83,6 +83,7 @@ extension NewMessageVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: K.userReuseIdentifier, for: indexPath) as! UserCell
         
         cell.user = users[indexPath.row]

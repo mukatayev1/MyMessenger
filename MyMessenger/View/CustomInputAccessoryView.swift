@@ -17,7 +17,7 @@ class CustomInputAccessoryView: UIView {
     
     weak var delegate: CustomInputAccessoryViewDelegate?
     
-    let messageInputView: UITextView = {
+    private let messageInputView: UITextView = {
         let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 16)
         tv.layer.cornerRadius = 18
@@ -55,6 +55,24 @@ class CustomInputAccessoryView: UIView {
         
         autoresizingMask = .flexibleHeight
         
+        //add subviews
+        subviewElements()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleTextInputChange), name: UITextView.textDidChangeNotification, object: nil)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return .zero
+    }
+    
+    //MARK: - Helpers
+    
+    func subviewElements() {
         addSubview(sendButton)
         sendButton.anchor(bottom: safeAreaLayoutGuide.bottomAnchor, right: rightAnchor, paddingBottom: 5, paddingRight: 5)
         sendButton.setDimensions(height: 50, width: 50)
@@ -70,16 +88,11 @@ class CustomInputAccessoryView: UIView {
         addSubview(placeHolderLabel)
         placeHolderLabel.anchor(left: messageInputView.leftAnchor, paddingLeft: 4)
         placeHolderLabel.centerY(inView: messageInputView)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleTextInputChange), name: UITextView.textDidChangeNotification, object: nil)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return .zero
+    func clearMessageText() {
+        messageInputView.text = nil
+        placeHolderLabel.isHidden = false
     }
     
     //MARK: - Selectors
@@ -95,3 +108,4 @@ class CustomInputAccessoryView: UIView {
     }
     
 }
+
