@@ -36,6 +36,13 @@ struct MessageVM {
         return message.isFromCurrentUser
     }
     
+    //Get a profileImageView url to show the profile imsage in chats vc.
+    var profileImageURL: URL? {
+        guard let user = message.user else { return nil }
+        
+        return URL(string: user.profileImageURL)
+    }
+    
     init(message: Message) {
         self.message = message
     }

@@ -15,29 +15,24 @@ struct Service {
         var users = [User]()
         Firestore.firestore().collection("users").getDocuments { snapshot, error in
             snapshot?.documents.forEach({ document in 
-                
                 //information is stored as dictionaary in firestore.
                 let dictionary = document.data()
                 //retrieving username info from documents data that has the key "username"
                 let user = User(dictionary: dictionary)
                 users.append(user)
                 completion(users)
-                
             })
-            
-            
         }
     }
     
     
     //fetching all the messages into a ChatsCVC. Ordered by timestamp
-    static func fetchMessages(forUser user: User, completion: @escaping([Message]) -> Void?) {
+    //If a have a chat with Pavel Durove, then (forUser: Pavel Durov). Later we will fetch all the messages with Pavel Durov through the use of completion.
+    static func fetchMessages(forUser user: User, completion: @escaping([Message]) -> Void) {
         var messages = [Message]()
         guard let currentUid = Auth.auth().currentUser?.uid else {return}
-        
         //create a query that will access the messages collection. Going into the current user id, accessing the list of messaeges with a particular user.uID and order it by time.
         let query = K.COLLECTION_MESSAGES.document(currentUid).collection(user.uID).order(by: "timestamp")
-        
         //add a snapshot listener: in order to know each time messages is added into the database. It says: "something has been added to the database. Refresh the view"
         query.addSnapshotListener { (snapshot, error) in
             //go through all changes that appeared in a snapshot

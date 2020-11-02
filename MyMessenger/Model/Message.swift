@@ -17,6 +17,7 @@ struct Message {
     
     let isFromCurrentUser: Bool
     
+    //initialization method
     init(dictionary: [String: Any]) {
         
         self.text = dictionary["text"] as? String ?? ""

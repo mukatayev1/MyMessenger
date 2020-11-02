@@ -46,11 +46,9 @@ class MessageCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         //subviewing
         subviewElements()
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -69,7 +67,7 @@ class MessageCell: UICollectionViewCell {
         addSubview(bubbleContainer)
         bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         bubbleContainer.layer.cornerRadius = 12
-        bubbleContainer.anchor(top: topAnchor)
+        bubbleContainer.anchor(top: topAnchor, bottom: bottomAnchor)
         bubbleContainer.widthAnchor.constraint(equalToConstant: 250).isActive = true
         
         //Left and Right anchors of the bubble
@@ -97,5 +95,6 @@ class MessageCell: UICollectionViewCell {
         bubbleRightAnchor.isActive = viewModel.rightAnchorActive
         
         profileImageView.isHidden = viewModel.shouldHideProfileImage
+        profileImageView.sd_setImage(with: viewModel.profileImageURL)
     }
 }

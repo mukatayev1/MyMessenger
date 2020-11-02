@@ -38,8 +38,7 @@ class ChatsCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         setupUI()
         print("User in chatVC\(user.username)")
-        
-        
+        fetchMessages()
     }
     
     //It helps us to setup input accessory view of VC.
@@ -59,6 +58,8 @@ class ChatsCollectionVC: UICollectionViewController {
         
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: K.messageReuseIdentifier)
         collectionView.alwaysBounceVertical = true
+        
+        collectionView.keyboardDismissMode = .interactive
     }
     
     //MARK: - API
@@ -67,6 +68,10 @@ class ChatsCollectionVC: UICollectionViewController {
         Service.fetchMessages(forUser: user) { (messages) in
             self.messages = messages
             self.collectionView.reloadData()
+            
+            //func to automatically scroll the collectionView down to the latest messages that was sent.
+            self.collectionView.scrollToItem(at: [0, self.messages.count - 1],
+                                             at: .bottom, animated: true)
         }
     }
 
@@ -83,11 +88,11 @@ extension ChatsCollectionVC {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.messageReuseIdentifier, for: indexPath) as! MessageCell
         
         cell.message = messages[indexPath.row]
+        cell.message?.user = user
         
         return cell
     }
-    
-    //MARK: - Selectors
+
 }
 
 //MARK: - Extensions
@@ -99,8 +104,26 @@ extension ChatsCollectionVC: UICollectionViewDelegateFlowLayout {
         return .init(top: 16, left: 0, bottom: 16, right: 0)
     }
     
+    
+    //Here we work with cells that are populated with Message Cells. And inside of this func, we define the dynamic sizing of the messages.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        
+        let phoneWidth = view.frame.width
+        //creating a dummy size
+        let myFrame = CGRect(x: 0, y: 0, width: phoneWidth, height: 50)
+        let estimatedSizeCell = MessageCell(frame: myFrame)
+        //defining .message of the cell.
+        estimatedSizeCell.message = messages[indexPath.row]
+        estimatedSizeCell.layoutIfNeeded()
+        
+        //Utilizing a dynamic sizing for the target size.
+        //initialize targetSize
+        let targetSize = CGSize(width: phoneWidth, height: 1000)
+        //Use targetSize for .systemLayoutSizeFitting(). It figures how tall the cell should be based on the estimatedSizeCell that is populated with some message.
+        let estimatedSize = estimatedSizeCell.systemLayoutSizeFitting(targetSize)
+        
+        return .init(width: phoneWidth, height: estimatedSize.height)
+        
     } 
 }
 
@@ -119,13 +142,7 @@ extension ChatsCollectionVC: CustomInputAccessoryViewDelegate {
         }
         
         inputView.clearMessageText()
-        //in order to scroll the view when message is sent
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            
-            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-            self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-        }
+        
     }
     
 }
