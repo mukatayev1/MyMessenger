@@ -14,6 +14,8 @@ class ConversationsVC: UIViewController {
     
     private let tableView = UITableView()
     
+    private var conversations = [Conversation]()
+    
     private let newMessageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(K.plusImage, for: .normal)
@@ -31,6 +33,12 @@ class ConversationsVC: UIViewController {
         
         setupUI()
         authenticateUser()
+        fetchConversations()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
     }
     
     //MARK: - API
@@ -42,6 +50,13 @@ class ConversationsVC: UIViewController {
         } else {
 //            print("DEBUG: User is logged in. Setup screen")
 //            print("User ID: \(Auth.auth().currentUser?.uid)")
+        }
+    }
+    
+    func fetchConversations() {
+        Service.fetchConversations { (conversations) in
+            self.conversations = conversations
+            self.tableView.reloadData()
         }
     }
     
@@ -70,7 +85,6 @@ class ConversationsVC: UIViewController {
     func setupUI() {
         view.backgroundColor = .white
         
-        setupNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
         setupTableView()
         
         let profileImage = K.profileImage
@@ -90,8 +104,13 @@ class ConversationsVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.chatsReuseIdentifier)
+        tableView.register(ConversationCell.self, forCellReuseIdentifier: K.chatsReuseIdentifier)
         view.addSubview(tableView)
+    }
+    
+    func showChatController(forUser user: User) {
+        let controller = ChatsCollectionVC(user: user)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     //MARK: - Subviewing
@@ -124,18 +143,22 @@ class ConversationsVC: UIViewController {
 
 extension ConversationsVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let user = conversations[indexPath.row].user
+
+        showChatController(forUser: user)
     }
 }
 
 extension ConversationsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.chatsReuseIdentifier, for: indexPath)
-        cell.textLabel?.text = "Im here"
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.chatsReuseIdentifier, for: indexPath) as! ConversationCell
+        
+        cell.conversation = conversations[indexPath.row]
+        
         return cell
     }
 }
@@ -146,8 +169,6 @@ extension ConversationsVC: NewMessageVCDelegate {
     func controller(_ controller: NewMessageVC, wantsToStartChatWith user: User) {
         //place the function of NewMessage delegate gets performed.
         controller.dismiss(animated: true, completion: nil)
-        let chat = ChatsCollectionVC(user: user)
-        
-        navigationController?.pushViewController(chat, animated: true)
+        showChatController(forUser: user)
     }
 }

@@ -35,4 +35,5 @@ struct K {
     static let messageReuseIdentifier = "MessageCell"
     
     static let COLLECTION_MESSAGES = Firestore.firestore().collection("messages")
+    static let COLLECTION_USERS = Firestore.firestore().collection("users")
 }

@@ -74,6 +74,7 @@ class ChatsCollectionVC: UICollectionViewController {
                                              at: .bottom, animated: true)
         }
     }
+    
 
 }
 

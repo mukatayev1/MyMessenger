@@ -13,7 +13,7 @@ struct Service {
     
     static func fetchUsers(completion: @escaping([User]) -> Void) {
         var users = [User]()
-        Firestore.firestore().collection("users").getDocuments { snapshot, error in
+        K.COLLECTION_USERS.getDocuments { snapshot, error in
             snapshot?.documents.forEach({ document in 
                 //information is stored as dictionaary in firestore.
                 let dictionary = document.data()
@@ -58,12 +58,48 @@ struct Service {
                     "fromID": currentUid,
                     "toID": user.uID,
                     "timestamp": Timestamp(date: Date())] as [String: Any]
-        
         //accessing our firestore "messages" collection & adding a new document/message "data" to our logged in/current user.
         K.COLLECTION_MESSAGES.document(currentUid).collection(user.uID).addDocument(data: data) { (_) in
             //Accessing the firestore "messages" collection and adding the same message data to the user that receives that message.
             K.COLLECTION_MESSAGES.document(user.uID).collection(currentUid).addDocument(data: data, completion: completion)
+            //Creating a recent messages collection. Purpose: Store recent message of each user in order to display it in the ConversationsVC.
+            //Store recent messages of those, who send the message to current user
+            K.COLLECTION_MESSAGES.document(currentUid).collection("recent-messages").document(user.uID).setData(data)
+            //Store recent messages of current user to display it in other users' devices. func .setData() overrides existing data i.e. it deletes existing data and creates a new data.
+            K.COLLECTION_MESSAGES.document(user.uID).collection("recent-messages").document(currentUid).setData(data)
+        }
+    }
+    
+    //fetch user for Conversations
+    static func fetchUser(withUid uid: String, completion: @escaping (User) -> Void) {
+        K.COLLECTION_USERS.document(uid).getDocument { (snapshot, error) in
+            guard let dictionary = snapshot?.data() else { return }
+            let user = User(dictionary: dictionary)
+            completion(user)
+        }
+    }
+    
+    
+    static func fetchConversations(completion: @escaping([Conversation]) -> Void) {
+        var conversations = [Conversation]()
+        guard let uID = Auth.auth().currentUser?.uid else { return }
+        
+        let query = K.COLLECTION_MESSAGES.document(uID).collection("recent-messages").order(by: "timestamp")
+        
+        query.addSnapshotListener { (snapshot, error) in
+            
+            snapshot?.documentChanges.forEach({ change in
+                let dictionary = change.document.data()
+                let message = Message(dictionary: dictionary)
+                
+                self.fetchUser(withUid: message.toID) { user in
+                    let conversation = Conversation(user: user, message: message)
+                    conversations.append(conversation)
+                    completion(conversations)
+                }
+            })
         }
     }
     
 }
+

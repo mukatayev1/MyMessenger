@@ -37,7 +37,7 @@ class MessageCell: UICollectionViewCell {
     
     private let bubbleContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = #colorLiteral(red: 1, green: 0.2596293399, blue: 0.3156041377, alpha: 1)
         return view
     }()
     
