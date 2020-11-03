@@ -119,7 +119,6 @@ class ConversationsVC: UIViewController {
         view.addSubview(newMessageButton)
         newMessageButton.setDimensions(height: 56, width: 56)
         newMessageButton.layer.cornerRadius = 56 / 2
-
 //        newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
         newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
     }
@@ -127,7 +126,10 @@ class ConversationsVC: UIViewController {
     //MARK: - Selectors
     
     @objc func showProfile() {
-        logout()
+        let controller = ProfileVC()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     @objc func handleNewMessageButton() {

@@ -36,4 +36,8 @@ struct K {
     
     static let COLLECTION_MESSAGES = Firestore.firestore().collection("messages")
     static let COLLECTION_USERS = Firestore.firestore().collection("users")
+    
+    static let profileReuseIdentifier = "ProfileCell"
+    
+    static let xMarkImage = UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
 }

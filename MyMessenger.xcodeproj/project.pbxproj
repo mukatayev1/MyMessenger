@@ -21,6 +21,8 @@
 		2B6B4429254817F500663B95 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B4428254817F500663B95 /* Service.swift */; };
 		2B6FA5D42551455E00D58530 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6FA5D32551455E00D58530 /* ConversationCell.swift */; };
 		2B6FA5D725515E0500D58530 /* ConversationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6FA5D625515E0500D58530 /* ConversationVM.swift */; };
+		2B6FA5E2255175B800D58530 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6FA5E1255175B800D58530 /* ProfileVC.swift */; };
+		2B6FA5E6255176C300D58530 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6FA5E5255176C300D58530 /* ProfileHeader.swift */; };
 		2BA1E8702550144300BAEDD6 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1E86F2550144300BAEDD6 /* Conversation.swift */; };
 		2BBE43A525455D5B008F149F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE43A425455D5B008F149F /* GoogleService-Info.plist */; };
 		2BC6A0A52542D82B0012CD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6A0A42542D82B0012CD07 /* AppDelegate.swift */; };
@@ -55,6 +57,8 @@
 		2B6B4428254817F500663B95 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2B6FA5D32551455E00D58530 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		2B6FA5D625515E0500D58530 /* ConversationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationVM.swift; sourceTree = "<group>"; };
+		2B6FA5E1255175B800D58530 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		2B6FA5E5255176C300D58530 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		2BA1E86F2550144300BAEDD6 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		2BBE43A425455D5B008F149F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BC6A0A12542D82B0012CD07 /* MyMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +169,7 @@
 				2B59746E2549917A009E39B2 /* CustomInputAccessoryView.swift */,
 				2B597484254A9086009E39B2 /* MessageCell.swift */,
 				2B6FA5D32551455E00D58530 /* ConversationCell.swift */,
+				2B6FA5E5255176C300D58530 /* ProfileHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				2BC6A0BF2542DAEE0012CD07 /* ConversationsVC.swift */,
 				2B0D62652546EAB2006A3FAA /* NewMessageVC.swift */,
 				2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */,
+				2B6FA5E1255175B800D58530 /* ProfileVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 				2BC6A0C02542DAEE0012CD07 /* ConversationsVC.swift in Sources */,
 				2B6B44262548179600663B95 /* User.swift in Sources */,
 				2B59748C254AA4D9009E39B2 /* MessageVM.swift in Sources */,
+				2B6FA5E2255175B800D58530 /* ProfileVC.swift in Sources */,
 				2B597489254A9817009E39B2 /* Message.swift in Sources */,
 				2B23A2F02545989800CCDC2B /* AuthService.swift in Sources */,
 				2B6FA5D725515E0500D58530 /* ConversationVM.swift in Sources */,
@@ -364,6 +371,7 @@
 				2BC6A0CB2542E4FF0012CD07 /* RegistrationVC.swift in Sources */,
 				2BC6A0A72542D82B0012CD07 /* SceneDelegate.swift in Sources */,
 				2B0D62662546EAB2006A3FAA /* NewMessageVC.swift in Sources */,
+				2B6FA5E6255176C300D58530 /* ProfileHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
