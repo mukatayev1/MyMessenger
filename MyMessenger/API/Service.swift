@@ -12,16 +12,13 @@ import Firebase
 struct Service {
     
     static func fetchUsers(completion: @escaping([User]) -> Void) {
-        var users = [User]()
         K.COLLECTION_USERS.getDocuments { snapshot, error in
-            snapshot?.documents.forEach({ document in 
-                //information is stored as dictionaary in firestore.
-                let dictionary = document.data()
-                //retrieving username info from documents data that has the key "username"
-                let user = User(dictionary: dictionary)
-                users.append(user)
-                completion(users)
-            })
+            guard var users = snapshot?.documents.map({ User(dictionary: $0.data()) }) else { return }
+            
+            if let i = users.firstIndex(where: { $0.uID == Auth.auth().currentUser?.uid }) {
+                users.remove(at: i)
+            }
+            completion(users)
         }
     }
     

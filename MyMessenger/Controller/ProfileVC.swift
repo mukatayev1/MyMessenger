@@ -60,8 +60,9 @@ class ProfileVC: UITableViewController {
     
     func fetchUser() {
         guard let currentUID = Auth.auth().currentUser?.uid else {return}
-        
+        showLoader(true)
         Service.fetchUser(withUid: currentUID) { (user) in
+            self.showLoader(false)
             self.user = user
         }
     }
@@ -118,8 +119,6 @@ extension ProfileVC: ProfileHeaderDelegate {
 
 extension ProfileVC: ProfileFooterDelegate {
     func handleLogout() {
-        
-        
         //Creating an alert controller in order to make sure that user wants to logout.
         let alert = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
         

@@ -9,9 +9,15 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
+protocol AuthenticationDelegate: class {
+    func authenticationComplete()
+}
+
 class LoginVC: UIViewController {
     
     //MARK: - Properties
+    
+    weak var delegate: AuthenticationDelegate?
     
     private var viewModel = LoginVM()
     
@@ -87,7 +93,6 @@ class LoginVC: UIViewController {
     
     //MARK: - Helpers
     
-    
     //a func to check if button needs to be enabled or not
     func checkFormStatus() {
         if viewModel.formIsValid {
@@ -149,6 +154,8 @@ class LoginVC: UIViewController {
     @objc func handleDHAButton() {
         let controller = RegistrationVC()
         navigationController?.pushViewController(controller, animated: true)
+        
+        controller.delegate = delegate
     }
     
     @objc func handleLoginButton() {
@@ -159,13 +166,15 @@ class LoginVC: UIViewController {
         
         AuthService.shared.logUserIn(withEmail: email, password: password) { result, error in
             if let error = error {
-                print("DEBUG: Failed to login with error: \(error.localizedDescription)")
                 self.showLoader(false)
+                self.showError(error.localizedDescription)
                 return
             }
             self.showLoader(false)
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
         }
+        
     }
     
     @objc func textDidChange(sender: UITextField) {

@@ -16,6 +16,8 @@ class ConversationsVC: UIViewController {
     
     private var conversations = [Conversation]()
     
+    private var conversationsDictionary = [String: Conversation]()
+    
     private let newMessageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(K.plusImage, for: .normal)
@@ -47,15 +49,20 @@ class ConversationsVC: UIViewController {
         if Auth.auth().currentUser?.uid == nil {
 //            print("DEBUG: User isn't logged in. Present the login screen")
             presentLoginScreen()
-        } else {
-//            print("DEBUG: User is logged in. Setup screen")
-//            print("User ID: \(Auth.auth().currentUser?.uid)")
         }
     }
     
     func fetchConversations() {
+        showLoader(true)
         Service.fetchConversations { (conversations) in
-            self.conversations = conversations
+            
+            conversations.forEach { (conversation) in
+                let message = conversation.message
+                self.conversationsDictionary[message.chatPartnerID] = conversation
+            }
+            self.showLoader(false)
+            
+            self.conversations = Array(self.conversationsDictionary.values)
             self.tableView.reloadData()
         }
     }
@@ -68,6 +75,8 @@ class ConversationsVC: UIViewController {
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
+            
+            controller.delegate = self
         }
     }
     
@@ -183,6 +192,12 @@ extension ConversationsVC: ProfileVCDelegate {
     func handleLogout() {
         logout()
     }
-    
-    
+}
+
+extension ConversationsVC: AuthenticationDelegate {
+    func authenticationComplete() {
+        dismiss(animated: true, completion: nil)
+        setupUI()
+        fetchConversations()
+    }
 }

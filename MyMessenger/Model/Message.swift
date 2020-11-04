@@ -15,6 +15,10 @@ struct Message {
     let timestamp: Timestamp!
     var user: User?
     
+    var chatPartnerID: String {
+        return isFromCurrentUser ? toID : fromID
+    }
+    
     let isFromCurrentUser: Bool
     
     //initialization method
