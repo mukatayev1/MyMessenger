@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		2B0D62662546EAB2006A3FAA /* NewMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D62652546EAB2006A3FAA /* NewMessageVC.swift */; };
 		2B0D62692546F0C2006A3FAA /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D62682546F0C2006A3FAA /* UserCell.swift */; };
+		2B11B75F255280EE00B9E9FC /* AccountInfoVC(empty).swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11B75E255280EE00B9E9FC /* AccountInfoVC(empty).swift */; };
+		2B11B7622552810300B9E9FC /* SettingsVC(empty).swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11B7612552810300B9E9FC /* SettingsVC(empty).swift */; };
 		2B23A2F02545989800CCDC2B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23A2EF2545989800CCDC2B /* AuthService.swift */; };
 		2B46519525443A10008D6B3C /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46519425443A10008D6B3C /* LoginVM.swift */; };
 		2B46519925443A33008D6B3C /* RegistrationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B46519825443A33008D6B3C /* RegistrationVM.swift */; };
+		2B507CDD255192D3000A005C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B507CDC255192D3000A005C /* ProfileViewModel.swift */; };
+		2B507CE02551946B000A005C /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B507CDF2551946B000A005C /* ProfileCell.swift */; };
+		2B507CE32551B684000A005C /* ProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B507CE22551B684000A005C /* ProfileFooter.swift */; };
 		2B59746B254978CA009E39B2 /* ChatsCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */; };
 		2B59746F2549917A009E39B2 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B59746E2549917A009E39B2 /* CustomInputAccessoryView.swift */; };
 		2B597485254A9086009E39B2 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B597484254A9086009E39B2 /* MessageCell.swift */; };
@@ -45,9 +50,14 @@
 		0ECA8DFDE6C1F030A98811AB /* Pods-MyMessenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMessenger.debug.xcconfig"; path = "Target Support Files/Pods-MyMessenger/Pods-MyMessenger.debug.xcconfig"; sourceTree = "<group>"; };
 		2B0D62652546EAB2006A3FAA /* NewMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageVC.swift; sourceTree = "<group>"; };
 		2B0D62682546F0C2006A3FAA /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		2B11B75E255280EE00B9E9FC /* AccountInfoVC(empty).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountInfoVC(empty).swift"; sourceTree = "<group>"; };
+		2B11B7612552810300B9E9FC /* SettingsVC(empty).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsVC(empty).swift"; sourceTree = "<group>"; };
 		2B23A2EF2545989800CCDC2B /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2B46519425443A10008D6B3C /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		2B46519825443A33008D6B3C /* RegistrationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVM.swift; sourceTree = "<group>"; };
+		2B507CDC255192D3000A005C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		2B507CDF2551946B000A005C /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		2B507CE22551B684000A005C /* ProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooter.swift; sourceTree = "<group>"; };
 		2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCollectionVC.swift; sourceTree = "<group>"; };
 		2B59746E2549917A009E39B2 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		2B597484254A9086009E39B2 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -98,6 +108,7 @@
 				2B465193254439FF008D6B3C /* Authentication */,
 				2B59748B254AA4D9009E39B2 /* MessageVM.swift */,
 				2B6FA5D625515E0500D58530 /* ConversationVM.swift */,
+				2B507CDC255192D3000A005C /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -170,6 +181,8 @@
 				2B597484254A9086009E39B2 /* MessageCell.swift */,
 				2B6FA5D32551455E00D58530 /* ConversationCell.swift */,
 				2B6FA5E5255176C300D58530 /* ProfileHeader.swift */,
+				2B507CDF2551946B000A005C /* ProfileCell.swift */,
+				2B507CE22551B684000A005C /* ProfileFooter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,6 +195,8 @@
 				2B0D62652546EAB2006A3FAA /* NewMessageVC.swift */,
 				2B59746A254978CA009E39B2 /* ChatsCollectionVC.swift */,
 				2B6FA5E1255175B800D58530 /* ProfileVC.swift */,
+				2B11B75E255280EE00B9E9FC /* AccountInfoVC(empty).swift */,
+				2B11B7612552810300B9E9FC /* SettingsVC(empty).swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -351,6 +366,7 @@
 				2B46519525443A10008D6B3C /* LoginVM.swift in Sources */,
 				2BC6A0C32542E0B20012CD07 /* Constants.swift in Sources */,
 				2BC6A0C02542DAEE0012CD07 /* ConversationsVC.swift in Sources */,
+				2B507CDD255192D3000A005C /* ProfileViewModel.swift in Sources */,
 				2B6B44262548179600663B95 /* User.swift in Sources */,
 				2B59748C254AA4D9009E39B2 /* MessageVM.swift in Sources */,
 				2B6FA5E2255175B800D58530 /* ProfileVC.swift in Sources */,
@@ -360,7 +376,9 @@
 				2BC6A0C72542E4F20012CD07 /* LoginVC.swift in Sources */,
 				2BC6A0CE2542E9520012CD07 /* Extensions.swift in Sources */,
 				2B46519925443A33008D6B3C /* RegistrationVM.swift in Sources */,
+				2B507CE32551B684000A005C /* ProfileFooter.swift in Sources */,
 				2BC6A0D42542FFD60012CD07 /* CustomTextField.swift in Sources */,
+				2B11B75F255280EE00B9E9FC /* AccountInfoVC(empty).swift in Sources */,
 				2B59746B254978CA009E39B2 /* ChatsCollectionVC.swift in Sources */,
 				2B59746F2549917A009E39B2 /* CustomInputAccessoryView.swift in Sources */,
 				2BC6A0D12542FB590012CD07 /* InputContainerView.swift in Sources */,
@@ -370,7 +388,9 @@
 				2B6FA5D42551455E00D58530 /* ConversationCell.swift in Sources */,
 				2BC6A0CB2542E4FF0012CD07 /* RegistrationVC.swift in Sources */,
 				2BC6A0A72542D82B0012CD07 /* SceneDelegate.swift in Sources */,
+				2B11B7622552810300B9E9FC /* SettingsVC(empty).swift in Sources */,
 				2B0D62662546EAB2006A3FAA /* NewMessageVC.swift in Sources */,
+				2B507CE02551946B000A005C /* ProfileCell.swift in Sources */,
 				2B6FA5E6255176C300D58530 /* ProfileHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

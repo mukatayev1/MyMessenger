@@ -126,10 +126,12 @@ class ConversationsVC: UIViewController {
     //MARK: - Selectors
     
     @objc func showProfile() {
-        let controller = ProfileVC()
+        let controller = ProfileVC(style: .insetGrouped)
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
+        
+        controller.delegate = self
     }
     
     @objc func handleNewMessageButton() {
@@ -173,4 +175,14 @@ extension ConversationsVC: NewMessageVCDelegate {
         controller.dismiss(animated: true, completion: nil)
         showChatController(forUser: user)
     }
+}
+
+//MARK: - ProfileVC Delegate
+
+extension ConversationsVC: ProfileVCDelegate {
+    func handleLogout() {
+        logout()
+    }
+    
+    
 }
