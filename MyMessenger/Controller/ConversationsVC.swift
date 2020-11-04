@@ -172,7 +172,7 @@ extension ConversationsVC: UITableViewDataSource {
 extension ConversationsVC: NewMessageVCDelegate {
     func controller(_ controller: NewMessageVC, wantsToStartChatWith user: User) {
         //place the function of NewMessage delegate gets performed.
-        controller.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
         showChatController(forUser: user)
     }
 }
