@@ -36,8 +36,8 @@ This is a Messenger App created using Firebase services.
 <img src="https://user-images.githubusercontent.com/53441647/99644283-1708a880-2a91-11eb-894c-cabcf6f8e177.png" width="249.14" height="500">  <img src="https://user-images.githubusercontent.com/53441647/99644285-17a13f00-2a91-11eb-9f9c-f511c87e4cba.png" width="249.14" height="500">
 
 ## Technologies
-Project is created with:
 * 100% Programmatic UI
+* UIKit
 * AutoLayout
 * Firestore: Authentication, Cloud Firestore, Database
 * JGProgressHUD
