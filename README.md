@@ -1,6 +1,14 @@
 # My Messenger
 <img src="https://user-images.githubusercontent.com/53441647/99644280-16701200-2a91-11eb-8a2b-b5c6a741d323.png" width="100" height="100">
 
+
+## Table of contents
+* [Description](#description)
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
 ## Description
 This is a Messenger App created using Firebase services. 
 ### How it works:
