@@ -39,7 +39,7 @@ This is a Messenger App created using Firebase services.
 * 100% Programmatic UI
 * UIKit
 * AutoLayout
-* Firestore: Authentication, Cloud Firestore, Database
+* Firestore: Authentication, Cloud Firestore, Storage
 * JGProgressHUD
 * MVVM pattern
 * CocoaPods
