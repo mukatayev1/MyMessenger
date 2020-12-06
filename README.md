@@ -14,6 +14,7 @@ This is a Messenger App created using Firebase services.
 ### How it works:
 * The user makes login/register process ->  Clicks plus button to choose the user to message -> Starts messaging
 * Two users can text each other
+### See the video: [YouTube Link](https://youtu.be/PZvnqv70w5s)
 
 ## Features
 ### Authentication
